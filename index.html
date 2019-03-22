@@ -10,10 +10,18 @@
   <link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
 
   <!--THIS IS NEEDED TO IMPORT FIREBASE LIBRARIES -->
-  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 
   <!--THIS IS NEEDED TO IMPORT JQUERY LIBRARIES -->  
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+
 </head>
 <!-- ##################################################################################-->
 
@@ -76,13 +84,25 @@
 
 
 
-
-
 <!-- The following is the code that actually matters.  This is the Javascript that pushes and gets information to our database -->
 <script>
+  // Set the configuration for your app
+  // TODO: Replace with your project's config object
+    var config = {
+    apiKey: "AIzaSyAy6lkYcrgn9pXo-UiR2unYLwJQ3yRgxcY",
+    authDomain: "senpainoticeme-aee81.firebaseapp.com",
+    databaseURL: "https://senpainoticeme-aee81.firebaseio.com",
+    projectId: "senpainoticeme-aee81",
+    storageBucket: "senpainoticeme-aee81.appspot.com",
+    messagingSenderId: "375050601706"
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the database service
+  var databaseLink = firebase.database().ref().child('responses');
 
   // Creates a variable called databaseLink that links to our database.
-  var databaseLink = new Firebase('https://senpai-notice-me.firebaseio.com/');  
+//  var databaseLink = new Firebase('https://senpainoticeme-aee81.firebaseio.com/');
   // Create javascript variables that link our previous HTML IDs.  Remember, we can't use regular HTML inside a script tag, so we need to use JQuery to reference any previous HTML.  A $ means we are using JQuery
   var messageField = $('#activity');
   var nameField = $('#name');
